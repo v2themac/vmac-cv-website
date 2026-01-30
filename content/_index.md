@@ -47,10 +47,10 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 
 <div id="boot-sequence" class="hidden">
 <div class="boot-line hidden">
-<span class="term-comment"># Boot sequence started...</span><br>
+<span class="term-comment"># Boot sequence initiated...</span><br>
 > User: <span class="term-keyword">Vitalii Maksymenko</span><br>
 > Role: <span class="term-keyword">DevOps / Cloud Engineer</span><br>
-> Status: <span class="term-success">Available for hire</span>
+> Status: <span class="term-success">Actively seeking DevOps roles</span>
 </div>
 <div class="boot-line hidden"><br></div>
 <div class="boot-line hidden">
@@ -71,8 +71,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-output hidden">
 <span class="term-comment"># Core specs & qualifications</span><br>
 <strong>Experience:</strong> <span class="term-keyword">5+ years</span> (SysAdmin & Support background)<br>
-<strong>Current State:</strong> Transitioning to Cloud Native<br>
-<strong>Certifications:</strong> <a href="https://cs.lpi.org/caf/Xamman/certification/verify/LPI000679592/x9bsmhqh5t" target="_blank" class="term-link">LPI Linux Essentials</a> (AWS Cloud Practitioner in progress)<br>
+<strong>Certifications:</strong> <a href="https://cs.lpi.org/caf/Xamman/certification/verify/LPI000679592/x9bsmhqh5t" target="_blank" class="term-link">LPI Linux Essentials</a><br>
 <strong>Location:</strong> Romania (remote & relocation ready)<br><br>
 </div>
 </div>
@@ -86,7 +85,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-output hidden">
 * <strong>Core:</strong> Linux (Debian/Alpine), Bash, Network, Troubleshooting<br>
 * <strong>Cloud & IaC:</strong> AWS (EC2, VPC, S3), Terraform, Docker<br>
-* <strong>Tools:</strong> Git, Hugo, CI/CD<br><br>
+* <strong>Tools:</strong> Git, Hugo, CI/CD, GenAI<br><br>
 </div>
 </div>
 
@@ -99,9 +98,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-output hidden">
 <br>
 <span>drwxr-xr-- 1 vmac infra</span> <a href="https://github.com/v2themac/mido-server" target="_blank" class="term-link">mido-server</a><br>
-<span class="term-comment">&nbsp;&nbsp;# Edge server on ARM64 (PostmarketOS).<br>&nbsp;&nbsp;# Running: Pi-hole, Unbound, Tailscale.<br>&nbsp;&nbsp;# Demonstrates: Linux administration, networking, resource optimization.</span><br><br>
-<span>drwxr-xr-- 1 vmac infra</span> <a href="https://github.com/v2themac/vmac-cv-website" target="_blank" class="term-link">vmac-cv-website</a><br>
-<span class="term-comment">&nbsp;&nbsp;# This website. Fully containerized & automated.<br>&nbsp;&nbsp;# Stack: Terraform, AWS, Docker, Hugo.<br>&nbsp;&nbsp;# Demonstrates: Infrastructure as Code and modern deployment workflow.</span>
+<span>drwxr-xr-- 1 vmac infra</span> <a href="https://github.com/v2themac/vmac-cv-website" target="_blank" class="term-link">vmac-cv-website</a>
 <br><br>
 </div>
 </div>
@@ -110,12 +107,41 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-line">
 <span class="term-prompt">vmac@cloud-node:~$</span> 
 <span class="cmd-cursor cursor"></span>
-<span class="typed-text term-cmd" data-cmd="./display_architecture.sh"></span>
+<span class="typed-text term-cmd" data-cmd="cat ./projects/mido-server/README.md"></span>
 </div>
 <div class="cmd-output hidden">
-<span class="term-comment"># Visualizing live infrastructure for this site:</span>
-<code class="ascii-art">
-  <span class="ascii-box">[User]</span>
+<span class="term-comment"># mido-server</span><br>
+Edge server on ARM64 (PostmarketOS)<br><br>
+<strong>## Tech Stack</strong><br>
+* System: PostmarketOS (Alpine-based)<br>
+* Container Runtime: Docker<br>
+* Services: Pi-hole, Unbound, Tailscale<br>
+* Hardware: ARM64 (xiaomi-mido)<br><br>
+<strong>## Key Features</strong><br>
+* Fully containerized service architecture<br>
+* Network-wide ad blocking and DNS filtering<br>
+* Private DNS resolution with Unbound<br>
+* Secure remote access via Tailscale mesh network<br><br>
+<span class="term-keyword">Demonstrates:</span> Linux administration, networking, resource optimization
+<br><br>
+</div>
+</div>
+
+<div class="cmd-block hidden">
+<div class="cmd-line">
+<span class="term-prompt">vmac@cloud-node:~$</span> 
+<span class="cmd-cursor cursor"></span>
+<span class="typed-text term-cmd" data-cmd="cat ./projects/vmac-cv-website/README.md"></span>
+</div>
+<div class="cmd-output hidden">
+<span class="term-comment"># vmac-cv-website</span><br>
+Personal CV website showcasing DevOps/Cloud skills<br><br>
+<strong>## Tech Stack</strong><br>
+* Infrastructure: Terraform + AWS (S3, CloudFront, Route53)<br>
+* Build: Hugo<br>
+* CI/CD: GitHub Actions + Docker<br><br>
+<strong>## Architecture</strong><br>
+<code class="ascii-art">  <span class="ascii-box">[User]</span>
     │
 <span class="ascii-arrow">HTTPS / 443</span>
     │
@@ -123,9 +149,14 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
                                <span class="ascii-arrow">^</span>
   <span class="term-comment">(Deployed via Terraform)</span>     <span class="ascii-arrow">│</span>
                                <span class="ascii-arrow">│</span>
-<span class="ascii-box">[GitHub Actions]</span> <span class="ascii-arrow">─></span> <span class="ascii-box">[Docker]</span> <span class="ascii-arrow">─></span> <span class="ascii-box">[Hugo Build]</span>
-</code>
-<hr class="term-divider">
+<span class="ascii-box">[GitHub Actions]</span> <span class="ascii-arrow">─></span> <span class="ascii-box">[Docker]</span> <span class="ascii-arrow">─></span> <span class="ascii-box">[Hugo Build]</span></code><br>
+<strong>## Key Features</strong><br>
+* Fully automated deployment pipeline<br>
+* Infrastructure as Code approach<br>
+* Containerized build process<br>
+* Global CDN distribution<br><br>
+<span class="term-keyword">Demonstrates:</span> Infrastructure as Code, modern deployment workflow
+<br><br>
 </div>
 </div>
 
@@ -133,13 +164,15 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-line">
 <span class="term-prompt">vmac@cloud-node:~$</span> 
 <span class="cmd-cursor cursor"></span>
-<span class="typed-text term-cmd" data-cmd="wget ./resume.pdf"></span>
+<span class="typed-text term-cmd" data-cmd="curl -O https://maksymenko.cv/resume.pdf"></span>
 </div>
 <div class="cmd-output hidden">
-> <a href="https://docs.google.com/document/d/1FHrJW-_l6w0Y7gNN1X0V8yYIECw7MQ2z3dP_OTiNmj4/export?format=pdf" target="_blank" class="term-success" style="border-bottom: 2px solid #03a062;">[Download My_CV.pdf]</a>
+Fetching resume.gdoc<br>
+Generating PDF... <span class="ascii-progress">[<span class="ascii-progress-fill" id="resume-progress"></span>]</span> <span class="hidden" id="pdf-done">done</span><br>
+> <a href="https://docs.google.com/document/d/1FHrJW-_l6w0Y7gNN1X0V8yYIECw7MQ2z3dP_OTiNmj4/export?format=pdf" target="_blank" class="term-success hidden" id="pdf-link" style="border-bottom: 2px solid #03a062;">[Download My_CV.pdf]</a>
 <br><br>
-<span class="term-comment"># System ready. Awaiting input...</span><br>
-<span class="term-prompt">vmac@cloud-node:~$</span> <span id="active-cursor" class="cursor"></span>
+<span class="term-comment hidden" id="cta-message"># Quest completed: CV exploration. Next quest: Collaboration? (Y/n)</span><br>
+<span class="term-prompt hidden" id="final-prompt">vmac@cloud-node:~$</span> <span id="active-cursor"></span>
 </div>
 </div>
 </div>
@@ -163,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const initTyped = document.getElementById('init-typed');
   const initCursor = document.getElementById('init-cursor');
   const bootSequence = document.getElementById('boot-sequence');
-  const initCommand = "source ./init_profile.sh --role=devops";
+  const initCommand = "./init_profile.sh --role=devops";
 
   function scrollToEl(el, force = false) {
     const rect = el.getBoundingClientRect();
@@ -267,8 +300,9 @@ document.addEventListener("DOMContentLoaded", function() {
       0: 2,    // cat system_info.txt - 2 times
       1: 1,    // check_skills --verbose - 1 time
       2: 1,    // ls -l ./projects/ - 1 time
-      3: 1,    // ./display_architecture.sh - 1 time
-      4: 1     // wget ./resume.pdf - no additional blinks (if present)
+      3: 1,    // cat ./projects/mido-server/README.md - 1 time
+      4: 1,    // cat ./projects/vmac-cv-website/README.md - 1 time
+      5: 1     // curl -O resume.pdf - 1 time
     };
     
     block.classList.remove('hidden');
@@ -287,7 +321,34 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
           setTimeout(() => {
             outputDiv.classList.remove('hidden');
-            scrollToEl(outputDiv); 
+            scrollToEl(outputDiv);
+            
+            // Special handling for PDF generation (last command)
+            if (index === 5) {
+              const resumeProgress = document.getElementById('resume-progress');
+              const pdfDone = document.getElementById('pdf-done');
+              const pdfLink = document.getElementById('pdf-link');
+              const ctaMessage = document.getElementById('cta-message');
+              const finalPrompt = document.getElementById('final-prompt');
+              const activeCursor = document.getElementById('active-cursor');
+              
+              setTimeout(() => {
+                animateAsciiProgress(resumeProgress, 20, 1000, () => {
+                  pdfDone.classList.remove('hidden');
+                  setTimeout(() => {
+                    pdfLink.classList.remove('hidden');
+                    setTimeout(() => {
+                      ctaMessage.classList.remove('hidden');
+                      finalPrompt.classList.remove('hidden');
+                      setTimeout(() => {
+                        activeCursor.classList.add('cursor'); // Добавляем класс cursor только сейчас
+                      }, 100);
+                    }, 300);
+                  }, 200);
+                });
+              }, 500);
+            }
+            
             setTimeout(() => runInteractive(index + 1), NEXT_CMD_DELAY_MS);
           }, OUTPUT_DELAY_MS);
         }
