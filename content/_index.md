@@ -40,6 +40,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div id="init-block">
   <div class="cmd-line">
     <span class="term-prompt">vmac@cloud-node:~$</span> 
+    <span id="init-cursor" class="cursor"></span>
     <span id="init-typed" class="term-cmd"></span>
   </div>
 </div>
@@ -48,7 +49,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="boot-line hidden">
 <span class="term-comment"># Boot sequence started...</span><br>
 > User: <span class="term-keyword">Vitalii Maksymenko</span><br>
-> Role: <span class="term-keyword">Cloud Engineer / DevOps</span><br>
+> Role: <span class="term-keyword">DevOps / Cloud Engineer</span><br>
 > Status: <span class="term-success">Available for hire</span>
 </div>
 <div class="boot-line hidden"><br></div>
@@ -64,6 +65,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-block hidden">
 <div class="cmd-line">
 <span class="term-prompt">vmac@cloud-node:~$</span> 
+<span class="cmd-cursor cursor"></span>
 <span class="typed-text term-cmd" data-cmd="cat system_info.txt"></span>
 </div>
 <div class="cmd-output hidden">
@@ -78,6 +80,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-block hidden">
 <div class="cmd-line">
 <span class="term-prompt">vmac@cloud-node:~$</span> 
+<span class="cmd-cursor cursor"></span>
 <span class="typed-text term-cmd" data-cmd="check_skills --verbose"></span>
 </div>
 <div class="cmd-output hidden">
@@ -90,14 +93,15 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-block hidden">
 <div class="cmd-line">
 <span class="term-prompt">vmac@cloud-node:~$</span> 
+<span class="cmd-cursor cursor"></span>
 <span class="typed-text term-cmd" data-cmd="ls -l ./projects/"></span>
 </div>
 <div class="cmd-output hidden">
 <br>
-<span>-rwxr-xr-x 1 root root</span> <a href="https://github.com/v2themac/mido-server" target="_blank" class="term-link">mido-server</a><br>
-<span class="term-comment">&nbsp;&nbsp;# Edge server on ARM64 (PostmarketOS).<br>&nbsp;&nbsp;# Running: Pi-hole, Unbound, Tailscale.<br>&nbsp;&nbsp;# Proof of: Linux networking, resource optimization.</span><br><br>
-<span>-rwxr-xr-x 1 root root</span> <a href="https://github.com/v2themac/vmac-cv-website" target="_blank" class="term-link">vmac-cv-website</a><br>
-<span class="term-comment">&nbsp;&nbsp;# This website. Fully containerized & automated.<br>&nbsp;&nbsp;# Stack: AWS, Terraform, Docker, Hugo.<br>&nbsp;&nbsp;# Proof of: Modern Cloud deployment workflow.</span>
+<span>drwxr-xr-- 1 vmac infra</span> <a href="https://github.com/v2themac/mido-server" target="_blank" class="term-link">mido-server</a><br>
+<span class="term-comment">&nbsp;&nbsp;# Edge server on ARM64 (PostmarketOS).<br>&nbsp;&nbsp;# Running: Pi-hole, Unbound, Tailscale.<br>&nbsp;&nbsp;# Demonstrates: Linux administration, networking, resource optimization.</span><br><br>
+<span>drwxr-xr-- 1 vmac infra</span> <a href="https://github.com/v2themac/vmac-cv-website" target="_blank" class="term-link">vmac-cv-website</a><br>
+<span class="term-comment">&nbsp;&nbsp;# This website. Fully containerized & automated.<br>&nbsp;&nbsp;# Stack: Terraform, AWS, Docker, Hugo.<br>&nbsp;&nbsp;# Demonstrates: Infrastructure as Code and modern deployment workflow.</span>
 <br><br>
 </div>
 </div>
@@ -105,6 +109,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-block hidden">
 <div class="cmd-line">
 <span class="term-prompt">vmac@cloud-node:~$</span> 
+<span class="cmd-cursor cursor"></span>
 <span class="typed-text term-cmd" data-cmd="./display_architecture.sh"></span>
 </div>
 <div class="cmd-output hidden">
@@ -127,6 +132,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-block hidden">
 <div class="cmd-line">
 <span class="term-prompt">vmac@cloud-node:~$</span> 
+<span class="cmd-cursor cursor"></span>
 <span class="typed-text term-cmd" data-cmd="wget ./resume.pdf"></span>
 </div>
 <div class="cmd-output hidden">
@@ -150,10 +156,12 @@ document.addEventListener("DOMContentLoaded", function() {
   const TYPE_MAX_MS = 80;
   const OUTPUT_DELAY_MS = 100;
   const NEXT_CMD_DELAY_MS = 600;
+  const BLINK_DURATION_MS = 1000; // One blink cycle = 1 second
 
   const bootLines = document.querySelectorAll('.boot-line');
   const cmdBlocks = document.querySelectorAll('.cmd-block');
   const initTyped = document.getElementById('init-typed');
+  const initCursor = document.getElementById('init-cursor');
   const bootSequence = document.getElementById('boot-sequence');
   const initCommand = "source ./init_profile.sh --role=devops";
 
@@ -165,21 +173,32 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // --- NEW: Start with typing the init command ---
-  let charIndex = 0;
-  function typeInitCommand() {
-    if (charIndex < initCommand.length) {
-      initTyped.textContent += initCommand.charAt(charIndex);
-      charIndex++;
-      const randomSpeed = Math.floor(Math.random() * (TYPE_MAX_MS - TYPE_MIN_MS + 1)) + TYPE_MIN_MS;
-      setTimeout(typeInitCommand, randomSpeed);
-    } else {
-      setTimeout(() => {
-        bootSequence.classList.remove('hidden');
-        runBoot();
-      }, 500); // Small pause after typing before boot starts
-    }
+  function blinkCursor(cursorEl, times, callback) {
+    const duration = times * BLINK_DURATION_MS;
+    setTimeout(() => {
+      cursorEl.style.display = 'none';
+      if (callback) callback();
+    }, duration);
   }
+
+  // --- NEW: Start with blinking cursor 2.5 times, then typing the init command ---
+  blinkCursor(initCursor, 2.5, () => {
+    let charIndex = 0;
+    function typeInitCommand() {
+      if (charIndex < initCommand.length) {
+        initTyped.textContent += initCommand.charAt(charIndex);
+        charIndex++;
+        const randomSpeed = Math.floor(Math.random() * (TYPE_MAX_MS - TYPE_MIN_MS + 1)) + TYPE_MIN_MS;
+        setTimeout(typeInitCommand, randomSpeed);
+      } else {
+        setTimeout(() => {
+          bootSequence.classList.remove('hidden');
+          runBoot();
+        }, 500);
+      }
+    }
+    typeInitCommand();
+  });
 
   let bootIndex = 0;
   function runBoot() {
@@ -188,19 +207,29 @@ document.addEventListener("DOMContentLoaded", function() {
       line.classList.remove('hidden');
       if (bootIndex > 0) scrollToEl(line);
       
-      // Анимация ASCII прогресс-баров для подключений
-      if (bootIndex === 2) { // Строка с подключениями
+      // ASCII progress bars animation for connections
+      if (bootIndex === 2) { // Connection line
         const progressBars = line.querySelectorAll('.ascii-progress-fill');
         const links = ['github', 'linkedin'];
+        let completedBars = 0;
+        
         progressBars.forEach((bar, index) => {
           setTimeout(() => {
             animateAsciiProgress(bar, 20, 800, () => {
-              // Показываем ссылку после завершения загрузки
+              // Show link after loading completes
               const link = line.querySelector(`[data-link="${links[index]}"]`);
               if (link) link.classList.remove('hidden');
+              
+              completedBars++;
+              // Only proceed to next boot line after ALL progress bars complete
+              if (completedBars === progressBars.length) {
+                bootIndex++;
+                setTimeout(runBoot, BOOT_DELAY_MS);
+              }
             });
-          }, index * 900); // Задержка между барами
+          }, index * 900); // Delay between bars
         });
+        return; // Don't proceed immediately for this line
       }
       
       bootIndex++;
@@ -229,14 +258,26 @@ document.addEventListener("DOMContentLoaded", function() {
     
     const block = cmdBlocks[index];
     const cmdSpan = block.querySelector('.typed-text');
+    const cmdCursor = block.querySelector('.cmd-cursor');
     const outputDiv = block.querySelector('.cmd-output');
     const textToType = cmdSpan.getAttribute('data-cmd');
     
+    // Define number of blinks for each command
+    const blinkTimes = {
+      0: 2,    // cat system_info.txt - 2 times
+      1: 1,    // check_skills --verbose - 1 time
+      2: 1,    // ls -l ./projects/ - 1 time
+      3: 1,    // ./display_architecture.sh - 1 time
+      4: 1     // wget ./resume.pdf - no additional blinks (if present)
+    };
+    
     block.classList.remove('hidden');
-    scrollToEl(cmdSpan, true); 
-
-    let interactCharIndex = 0;
-    setTimeout(() => {
+    scrollToEl(cmdSpan, true);
+    
+    // Blink cursor before typing command
+    const blinks = blinkTimes[index] || 0;
+    blinkCursor(cmdCursor, blinks, () => {
+      let interactCharIndex = 0;
       function typeChar() {
         if (interactCharIndex < textToType.length) {
           cmdSpan.textContent += textToType.charAt(interactCharIndex);
@@ -252,10 +293,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
       typeChar();
-    }, 150);
+    });
   }
 
-  // Initial startup delay before typing the very first command
-  setTimeout(typeInitCommand, 500);
+  // Initial startup delay before blinking and typing the very first command
+  setTimeout(() => {
+    // Startup already runs through blinkCursor above
+  }, 500);
 });
 </script>
