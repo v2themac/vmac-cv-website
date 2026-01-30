@@ -31,6 +31,8 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 .hidden { display: none; }
 .cursor { display: inline-block; width: 10px; height: 1.2em; background-color: #03a062; vertical-align: bottom; animation: blink 1s step-end infinite; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.ascii-progress { display: inline-block; font-family: monospace; color: #8a8a8a; }
+.ascii-progress-fill { color: #eceae5; }
 </style>
 
 <div class="term-container" id="terminal-root">
@@ -52,8 +54,8 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="boot-line hidden"><br></div>
 <div class="boot-line hidden">
 <span class="term-comment"># Establishing external connections...</span><br>
-> Connecting to GitHub... <a href="https://github.com/v2themac" target="_blank" class="term-link">[CONNECTED]</a><br>
-> Connecting to LinkedIn... <a href="https://www.linkedin.com/in/vitaliimaksymenko/" target="_blank" class="term-link">[CONNECTED]</a>
+> Connecting to GitHub... <span class="ascii-progress">[<span class="ascii-progress-fill"></span>]</span> <a href="https://github.com/v2themac" target="_blank" class="term-link hidden" data-link="github">[CONNECTED]</a><br>
+> Connecting to LinkedIn... <span class="ascii-progress">[<span class="ascii-progress-fill"></span>]</span> <a href="https://www.linkedin.com/in/vitaliimaksymenko/" target="_blank" class="term-link hidden" data-link="linkedin">[CONNECTED]</a>
 </div>
 <div class="boot-line hidden"><hr class="term-divider"></div>
 </div>
@@ -185,11 +187,41 @@ document.addEventListener("DOMContentLoaded", function() {
       const line = bootLines[bootIndex];
       line.classList.remove('hidden');
       if (bootIndex > 0) scrollToEl(line);
+      
+      // Анимация ASCII прогресс-баров для подключений
+      if (bootIndex === 2) { // Строка с подключениями
+        const progressBars = line.querySelectorAll('.ascii-progress-fill');
+        const links = ['github', 'linkedin'];
+        progressBars.forEach((bar, index) => {
+          setTimeout(() => {
+            animateAsciiProgress(bar, 20, 800, () => {
+              // Показываем ссылку после завершения загрузки
+              const link = line.querySelector(`[data-link="${links[index]}"]`);
+              if (link) link.classList.remove('hidden');
+            });
+          }, index * 900); // Задержка между барами
+        });
+      }
+      
       bootIndex++;
       setTimeout(runBoot, BOOT_DELAY_MS);
     } else {
       setTimeout(() => runInteractive(0), 200);
     }
+  }
+
+  function animateAsciiProgress(element, totalBlocks, duration, onComplete) {
+    let currentBlocks = 0;
+    const interval = duration / totalBlocks;
+    const timer = setInterval(() => {
+      if (currentBlocks < totalBlocks) {
+        element.textContent += '█';
+        currentBlocks++;
+      } else {
+        clearInterval(timer);
+        if (onComplete) onComplete();
+      }
+    }, interval);
   }
 
   function runInteractive(index) {
