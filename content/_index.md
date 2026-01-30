@@ -11,7 +11,7 @@ title = ''
   background-color: transparent; 
   color: #eceae5; 
   padding: 0; 
-  padding-bottom: 200px; /* Buffer for scrolling */
+  padding-bottom: 200px; 
   line-height: 1.5; 
   font-size: 1rem; 
   min-height: 100vh;
@@ -35,7 +35,14 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 
 <div class="term-container" id="terminal-root">
 
-<div id="boot-sequence">
+<div id="init-block">
+  <div class="cmd-line">
+    <span class="term-prompt">vmac@cloud-node:~$</span> 
+    <span id="init-typed" class="term-cmd"></span>
+  </div>
+</div>
+
+<div id="boot-sequence" class="hidden">
 <div class="boot-line hidden">
 <span class="term-comment"># Boot sequence started...</span><br>
 > User: <span class="term-keyword">Vitalii Maksymenko</span><br>
@@ -52,10 +59,9 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 </div>
 
 <div id="interactive-session">
-
 <div class="cmd-block hidden">
 <div class="cmd-line">
-<span class="term-prompt">$</span> 
+<span class="term-prompt">vmac@cloud-node:~$</span> 
 <span class="typed-text term-cmd" data-cmd="cat system_info.txt"></span>
 </div>
 <div class="cmd-output hidden">
@@ -69,7 +75,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 
 <div class="cmd-block hidden">
 <div class="cmd-line">
-<span class="term-prompt">$</span> 
+<span class="term-prompt">vmac@cloud-node:~$</span> 
 <span class="typed-text term-cmd" data-cmd="check_skills --verbose"></span>
 </div>
 <div class="cmd-output hidden">
@@ -81,7 +87,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 
 <div class="cmd-block hidden">
 <div class="cmd-line">
-<span class="term-prompt">$</span> 
+<span class="term-prompt">vmac@cloud-node:~$</span> 
 <span class="typed-text term-cmd" data-cmd="ls -l ./projects/"></span>
 </div>
 <div class="cmd-output hidden">
@@ -96,7 +102,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 
 <div class="cmd-block hidden">
 <div class="cmd-line">
-<span class="term-prompt">$</span> 
+<span class="term-prompt">vmac@cloud-node:~$</span> 
 <span class="typed-text term-cmd" data-cmd="./display_architecture.sh"></span>
 </div>
 <div class="cmd-output hidden">
@@ -118,23 +124,20 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 
 <div class="cmd-block hidden">
 <div class="cmd-line">
-<span class="term-prompt">$</span> 
+<span class="term-prompt">vmac@cloud-node:~$</span> 
 <span class="typed-text term-cmd" data-cmd="wget ./resume.pdf"></span>
 </div>
 <div class="cmd-output hidden">
 > <a href="https://docs.google.com/document/d/1FHrJW-_l6w0Y7gNN1X0V8yYIECw7MQ2z3dP_OTiNmj4/export?format=pdf" target="_blank" class="term-success" style="border-bottom: 2px solid #03a062;">[Download My_CV.pdf]</a>
 <br><br>
 <span class="term-comment"># System ready. Awaiting input...</span><br>
-<span class="term-prompt">$</span> <span id="active-cursor" class="cursor"></span>
+<span class="term-prompt">vmac@cloud-node:~$</span> <span id="active-cursor" class="cursor"></span>
 </div>
-</div>
-
 </div>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  // Ensure we start at the top on page refresh
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
@@ -148,14 +151,31 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const bootLines = document.querySelectorAll('.boot-line');
   const cmdBlocks = document.querySelectorAll('.cmd-block');
+  const initTyped = document.getElementById('init-typed');
+  const bootSequence = document.getElementById('boot-sequence');
+  const initCommand = "source ./init_profile.sh --role=devops";
 
-  // Scroll logic with position check
   function scrollToEl(el, force = false) {
     const rect = el.getBoundingClientRect();
     const isInView = (rect.top >= 0 && rect.bottom <= window.innerHeight);
-    // Only scroll if element is not fully visible or force is requested
     if (!isInView || force) {
       el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
+
+  // --- NEW: Start with typing the init command ---
+  let charIndex = 0;
+  function typeInitCommand() {
+    if (charIndex < initCommand.length) {
+      initTyped.textContent += initCommand.charAt(charIndex);
+      charIndex++;
+      const randomSpeed = Math.floor(Math.random() * (TYPE_MAX_MS - TYPE_MIN_MS + 1)) + TYPE_MIN_MS;
+      setTimeout(typeInitCommand, randomSpeed);
+    } else {
+      setTimeout(() => {
+        bootSequence.classList.remove('hidden');
+        runBoot();
+      }, 500); // Small pause after typing before boot starts
     }
   }
 
@@ -164,8 +184,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (bootIndex < bootLines.length) {
       const line = bootLines[bootIndex];
       line.classList.remove('hidden');
-      // Minimal scrolling during boot to avoid jitter
-      if (bootIndex > 2) scrollToEl(line);
+      if (bootIndex > 0) scrollToEl(line);
       bootIndex++;
       setTimeout(runBoot, BOOT_DELAY_MS);
     } else {
@@ -181,21 +200,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const outputDiv = block.querySelector('.cmd-output');
     const textToType = cmdSpan.getAttribute('data-cmd');
     
-    // 1. Reveal block and scroll BEFORE typing starts
     block.classList.remove('hidden');
     scrollToEl(cmdSpan, true); 
 
-    let charIndex = 0;
-    // 2. Small delay before typing for better organic feel
+    let interactCharIndex = 0;
     setTimeout(() => {
       function typeChar() {
-        if (charIndex < textToType.length) {
-          cmdSpan.textContent += textToType.charAt(charIndex);
-          charIndex++;
+        if (interactCharIndex < textToType.length) {
+          cmdSpan.textContent += textToType.charAt(interactCharIndex);
+          interactCharIndex++;
           const randomSpeed = Math.floor(Math.random() * (TYPE_MAX_MS - TYPE_MIN_MS + 1)) + TYPE_MIN_MS;
           setTimeout(typeChar, randomSpeed);
         } else {
-          // 3. Command finished - wait slightly, then show output and scroll
           setTimeout(() => {
             outputDiv.classList.remove('hidden');
             scrollToEl(outputDiv); 
@@ -207,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 150);
   }
 
-  // Initial startup delay
-  setTimeout(runBoot, 500);
+  // Initial startup delay before typing the very first command
+  setTimeout(typeInitCommand, 500);
 });
 </script>

@@ -84,7 +84,7 @@ pagination.pagerSize = 5
     title = "maksymenko.cv"
 
     [languages.en.params]
-      subtitle = "Frank White feat. Godsilla - Comeback.mp3 "
+      subtitle = "From Ops to DevOps. Focused on reliability and automation."
       owner = ""
       keywords = ""
       copyright = "Vitalii Maksymenko 2026"
@@ -99,7 +99,7 @@ pagination.pagerSize = 5
       words = "words"
 
       [languages.en.params.logo]
-        logoText = "root@aws-cloud:~# ./init_profile.sh --role=devops"
+        logoText = "vmac@cloud-node:~$"
         logoHomeLink = "/"
 
       #[languages.en.menu]
