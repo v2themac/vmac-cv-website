@@ -22,7 +22,7 @@ pagination.pagerSize = 5
   contentTypeName = "content"
 
   # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 3
+  showMenuItems = 4
 
   # show selector to switch language
   showLanguageSelector = false
@@ -84,7 +84,7 @@ pagination.pagerSize = 5
     title = "maksymenko.cv"
 
     [languages.en.params]
-      subtitle = "A simple, retro theme for Hugo"
+      subtitle = "Frank White feat. Godsilla - Comeback.mp3 "
       owner = ""
       keywords = ""
       copyright = "Vitalii Maksymenko 2026"
@@ -99,22 +99,28 @@ pagination.pagerSize = 5
       words = "words"
 
       [languages.en.params.logo]
-        logoText = "maksymenko.cv"
+        logoText = "root@aws-cloud:~# ./init_profile.sh --role=devops"
         logoHomeLink = "/"
 
-      [languages.en.menu]
-        [[languages.en.menu.main]]
-          identifier = "credly"
-          name = "Credly"
-          url = "https://www.credly.com/users/maksymenko/badges#credly"
-        [[languages.en.menu.main]]
-          identifier = "github"
-          name = "Github"
-          url = "https://github.com/v2themac"
-        [[languages.en.menu.main]]
-          identifier = "linkedin"
-          name = "Linkedin"
-          url = "https://www.linkedin.com/in/vitaliimaksymenko/"
+      #[languages.en.menu]
+      #  [[languages.en.menu.main]]
+      #    identifier = "CV"
+      #    name = "Curriculum Vitae"
+      #    url = "https://docs.google.com/document/d/1FHrJW-_l6w0Y7gNN1X0V8yYIECw7MQ2z3dP_OTiNmj4/export?format=pdf"
+      #    [languages.en.menu.main.params]
+      #      NewTab = true
+      #  [[languages.en.menu.main]]
+      #    identifier = "github"
+      #    name = "Github"
+      #    url = "https://github.com/v2themac"
+      #    [languages.en.menu.main.params] 
+      #      NewTab = true
+      #  [[languages.en.menu.main]]
+      #    identifier = "linkedin"
+      #    name = "Linkedin"
+      #    url = "https://www.linkedin.com/in/vitaliimaksymenko/"
+      #    [languages.en.menu.main.params] 
+      #      NewTab = true
 #[module]
   # In case you would like to make changes to the theme and keep it locally in you repository,
   # uncomment the line below (and correct the local path if necessary).
