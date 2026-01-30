@@ -6,8 +6,15 @@ theme = "terminal"
 pagination.pagerSize = 5
 
 # Required for Chroma and the custom syntax highlighting.
-[markup.highlight]
-  noClasses = false
+#[markup.highlight]
+#  noClasses = false
+
+#allow HTML code
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 
 [params]
   # dir name of your main content (default is `content/posts`).
