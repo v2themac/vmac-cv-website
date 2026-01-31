@@ -1,0 +1,45 @@
+name: Deploy Website
+
+on:
+  push:
+    branches:
+      - main  # Trigger only on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive # IMPORTANT: Fetch the theme (it is installed as a submodule)
+          fetch-depth: 0
+
+      # 2. Install Hugo
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      # 3. Build the site (public folder)
+      - name: Build site
+        run: hugo --minify --baseURL "https://maksymenko.cv/"
+        # The --baseURL flag is important to override local settings if necessary
+
+      # 4. Log in to AWS
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      # 5. Upload files to S3 (with old file deletion)
+      - name: Deploy to S3
+        run: aws s3 sync public/ s3://maksymenko.cv --delete
+
+      # 6. Invalidate CloudFront cache (to make changes appear immediately)
+      - name: Invalidate CloudFront
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"

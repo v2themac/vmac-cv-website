@@ -111,9 +111,17 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 </div>
 <div class="cmd-output hidden">
 <span class="term-comment"># mido-server</span><br>
-Edge server on ARM64 (PostmarketOS)<br><br>
-* <strong> Stack:</strong>  PostmarketOS (ARM64) | Docker | Pi-hole | Unbound | Tailscale<br>
-* <strong> Core:</strong>  Containerized DNS filtering, recursive resolution, and mesh VPN.<br>
+Edge server on ARM64 (PostmarketOS)<br>
+<strong>## Tech Stack</strong><br>
+* System: PostmarketOS (Alpine-based)<br>
+* Container Runtime: Docker<br>
+* Services: Pi-hole, Unbound, Tailscale<br>
+* Hardware: ARM64 (xiaomi-mido)<br><br>
+<strong>## Key Features</strong><br>
+* Fully containerized service architecture<br>
+* Network-wide ad blocking and DNS filtering<br>
+* Private DNS resolution with Unbound<br>
+* Secure remote access via Tailscale mesh network<br><br>
 <span class="term-keyword">Demonstrates:</span> Linux administration, networking, resource optimization
 <br><br>
 </div>
@@ -128,8 +136,25 @@ Edge server on ARM64 (PostmarketOS)<br><br>
 <div class="cmd-output hidden">
 <span class="term-comment"># vmac-cv-website</span><br>
 Personal portfolio & IaC showcase (you're currently on it)<br><br>
-* <strong> Stack:</strong>  Hugo | Terraform | AWS (S3/CF) | GitHub Actions | Docker <br>
-* <strong> Core:</strong>  Automated CI/CD pipeline, IaC-managed infrastructure, global CDN delivery.<br>
+<strong>## Tech Stack</strong><br>
+* Infrastructure: Terraform + AWS (S3, CloudFront) + Porkbun<br>
+* Build: Hugo<br>
+* CI/CD: GitHub Actions + Docker<br><br>
+<strong>## Architecture</strong><br>
+<code class="ascii-art">  <span class="ascii-box">[User]</span>
+    │
+<span class="ascii-arrow">HTTPS / 443</span>
+    │
+<span class="ascii-box">[Porkbun]</span> <span class="ascii-arrow">─></span> <span class="ascii-box">[CloudFront]</span> <span class="ascii-arrow">─></span> <span class="ascii-box">[S3 Bucket]</span>
+                               <span class="ascii-arrow">^</span>
+  <span class="term-comment">(Deployed via Terraform)</span>     <span class="ascii-arrow">│</span>
+                               <span class="ascii-arrow">│</span>
+<span class="ascii-box">[GitHub Actions]</span> <span class="ascii-arrow">─></span> <span class="ascii-box">[Docker]</span> <span class="ascii-arrow">─></span> <span class="ascii-box">[Hugo Build]</span></code><br>
+<strong>## Key Features</strong><br>
+* Fully automated deployment pipeline<br>
+* Infrastructure as Code approach<br>
+* Containerized build process<br>
+* Global CDN distribution<br><br>
 <span class="term-keyword">Demonstrates:</span> Infrastructure as Code, modern deployment workflow
 <br><br>
 </div>
@@ -143,11 +168,13 @@ Personal portfolio & IaC showcase (you're currently on it)<br><br>
 </div>
 <div class="cmd-output hidden">
 Fetching resume.gdoc<br>
-Generating PDF... <span class="ascii-progress">[<span class="ascii-progress-fill" id="resume-progress"></span>]</span> <span class="hidden" id="pdf-done">[DONE]</span><br>
+Generating PDF... <span class="ascii-progress">[<span class="ascii-progress-fill" id="resume-progress"></span>]</span> <span class="hidden" id="pdf-done">done</span><br>
 > <a href="https://docs.google.com/document/d/1FHrJW-_l6w0Y7gNN1X0V8yYIECw7MQ2z3dP_OTiNmj4/export?format=pdf" target="_blank" class="term-success hidden" id="pdf-link" style="border-bottom: 2px solid #03a062;">[Download My_CV.pdf]</a>
 <br><br>
-<span class="term-comment hidden" id="cta-message"># Quest completed: Website exploration. Next quest: Collaboration? (Y/n)</span><br>
+<span class="term-comment hidden" id="cta-message"># Quest completed: CV exploration. Next quest: Collaboration? (Y/n)</span><br>
 <span class="term-prompt hidden" id="final-prompt">vmac@cloud-node:~$</span> <span id="active-cursor"></span>
+</div>
+</div>
 </div>
 
 <script>
