@@ -24,3 +24,17 @@ graph LR
         Sync --> Purge[CF Invalidation]
     end
 ```
+
+## 🛠 Project Structure
+
+- `/content` - Markdown source files.
+- `/themes` - UI components (Hugo Terminal theme).
+- `/terraform` - (In Progress) IaC definitions for AWS resources.
+- `.github/workflows` - CI/CD pipeline configuration.
+
+## 🚀 Key Features
+
+- **Zero Touch Deployment:** Automated CI/CD.
+- **Global Availability:** Content cached at AWS Edge locations.
+- **Security:** Automated SSL via AWS Certificate Manager.
+- **Infrastructure as Code:** Managed via Terraform.
