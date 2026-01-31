@@ -14,15 +14,20 @@ Infrastructure-as-Code driven personal portfolio website. Built with **Hugo**, h
 The project follows a modern Serverless approach to host static content with global delivery.
 
 ```mermaid
-graph LR
+graph TD
     User((User)) -->|HTTPS| CF[CloudFront CDN]
     CF -->|Fetch| S3[S3 Bucket]
+
     subgraph Automation [CI/CD Pipeline]
+        direction LR
         Push[Git Push] --> Actions[GitHub Actions]
         Actions --> Hugo[Build Hugo]
         Hugo --> Sync[S3 Sync]
         Sync --> Purge[CF Invalidation]
     end
+
+    Purge -.-> CF
+    Sync -.-> S3
 ```
 
 ## 🛠 Project Structure
