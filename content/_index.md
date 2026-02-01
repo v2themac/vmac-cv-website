@@ -85,7 +85,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-output hidden">
 * <strong>Core:</strong> Linux (Debian/Alpine), Bash, Network, Troubleshooting<br>
 * <strong>Cloud & IaC:</strong> AWS (EC2, VPC, S3), Terraform, Docker<br>
-* <strong>Tools:</strong> Git, Hugo, CI/CD, GenAI<br><br>
+* <strong>Tools:</strong> Git, Hugo, CI/CD<br><br>
 </div>
 </div>
 
@@ -129,7 +129,7 @@ Edge server on ARM64 (PostmarketOS)<br><br>
 <span class="term-comment"># vmac-cv-website</span><br>
 Personal portfolio & IaC showcase (you're currently on it)<br><br>
 * <strong> Stack:</strong>  Hugo | Terraform | AWS (S3/CF) | GitHub Actions | Docker <br>
-* <strong> Core:</strong>  Automated CI/CD pipeline, IaC-managed infrastructure, global CDN delivery.<br>
+* <strong> Core:</strong>  Automated CI/CD pipeline, IaC-managed infrast, global CDN delivery.<br>
 <span class="term-keyword">Demonstrates:</span> Infrastructure as Code, modern deployment workflow
 <br><br>
 </div>
@@ -146,8 +146,11 @@ Fetching resume.gdoc<br>
 Generating PDF... <span class="ascii-progress">[<span class="ascii-progress-fill" id="resume-progress"></span>]</span> <span class="hidden" id="pdf-done">[DONE]</span><br>
 > <a href="https://docs.google.com/document/d/1FHrJW-_l6w0Y7gNN1X0V8yYIECw7MQ2z3dP_OTiNmj4/export?format=pdf" target="_blank" class="term-success hidden" id="pdf-link" style="border-bottom: 2px solid #03a062;">[Download My_CV.pdf]</a>
 <br><br>
-<span class="term-comment hidden" id="cta-message"># Quest completed: Website exploration. Next quest: Collaboration? (Y/n)</span><br>
+<span class="term-comment hidden" id="cta-message">[✓] Profile loaded. Exit code: 0<br>
+[→] Recommended action: run initiate_collaboration.sh<br>
+[⏳] Status: Awaiting input</span><br>
 <span class="term-prompt hidden" id="final-prompt">vmac@cloud-node:~$</span> <span id="active-cursor"></span>
+</div>
 </div>
 
 <script>
