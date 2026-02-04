@@ -70,7 +70,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 </div>
 <div class="cmd-output hidden">
 <span class="term-comment"># Core specs & qualifications</span><br>
-<strong>Experience:</strong> <span class="term-keyword">5+ years</span> (SysAdmin & Support background)<br>
+<strong>Experience:</strong> <span class="term-keyword">4+ years</span> (SysAdmin & Support background)<br>
 <strong>Certifications:</strong> <a href="https://cs.lpi.org/caf/Xamman/certification/verify/LPI000679592/x9bsmhqh5t" target="_blank" class="term-link">LPI Linux Essentials</a><br>
 <strong>Location:</strong> Romania (remote & relocation ready)<br><br>
 </div>
@@ -111,7 +111,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 </div>
 <div class="cmd-output hidden">
 <span class="term-comment"># mido-server</span><br>
-ARM64 Edge server (PostmarketOS)<br><br>
+ARM64 Linux Edge server (Adblocker, DNS resolver, VPN relay)  <br><br>
 * <strong> Stack:</strong>  PostmarketOS | Docker | Pi-hole | Unbound | Tailscale<br>
 * <strong> Core:</strong>  Containerized DNS filtering, recursive resolution, and mesh VPN.<br>
 <span class="term-keyword">Demonstrates:</span> Linux administration, networking, resource optimization
@@ -127,9 +127,9 @@ ARM64 Edge server (PostmarketOS)<br><br>
 </div>
 <div class="cmd-output hidden">
 <span class="term-comment"># vmac-cv-website</span><br>
-Personal portfolio & IaC showcase (you're currently on it)<br><br>
+Personal portfolio website & IaC showcase (you're currently on it)<br><br>
 * <strong> Stack:</strong>  Hugo | Terraform | AWS (S3/CF) | GitHub Actions | Docker <br>
-* <strong> Core:</strong>  Automated CI/CD pipeline, IaC-managed infrast, global CDN delivery.<br>
+* <strong> Core:</strong>  Automated CI/CD pipeline, IaC-managed infra, global CDN delivery.<br>
 <span class="term-keyword">Demonstrates:</span> Infrastructure as Code, modern deployment workflow
 <br><br>
 </div>
