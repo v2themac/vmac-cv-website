@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function() {
             outputDiv.classList.remove('hidden');
             scrollToEl(outputDiv);
             
-            // Special handling for PDF generation (last command)
+            // Special handling for PDF generation
             if (index === 5) {
               const resumeProgress = document.getElementById('resume-progress');
               const pdfDone = document.getElementById('pdf-done');
@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function() {
                       ctaMessage.classList.remove('hidden');
                       finalPrompt.classList.remove('hidden');
                       setTimeout(() => {
-                        activeCursor.classList.add('cursor'); // Добавляем класс cursor только сейчас
+                        activeCursor.classList.add('cursor');
                       }, 100);
                     }, 300);
                   }, 200);

@@ -10,5 +10,4 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1" # CloudFront requires us-east-1 for certain features
-}
+  region = "us-east-1"

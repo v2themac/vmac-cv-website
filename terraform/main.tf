@@ -103,7 +103,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 
   # Geography (Price Class)
-  price_class = "PriceClass_All" # Or PriceClass_100 if you chose North America/Europe
+  price_class = "PriceClass_All"
 
   # SSL Certificate
   viewer_certificate {
