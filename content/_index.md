@@ -111,8 +111,8 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 </div>
 <div class="cmd-output hidden">
 <span class="term-comment"># mido-server</span><br>
-Edge server on ARM64 (PostmarketOS)<br><br>
-* <strong> Stack:</strong>  PostmarketOS (ARM64) | Docker | Pi-hole | Unbound | Tailscale<br>
+ARM64 Edge server (PostmarketOS)<br><br>
+* <strong> Stack:</strong>  PostmarketOS | Docker | Pi-hole | Unbound | Tailscale<br>
 * <strong> Core:</strong>  Containerized DNS filtering, recursive resolution, and mesh VPN.<br>
 <span class="term-keyword">Demonstrates:</span> Linux administration, networking, resource optimization
 <br><br>
