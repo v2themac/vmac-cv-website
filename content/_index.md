@@ -128,7 +128,7 @@ ARM64 Linux Edge server (Adblocker, DNS resolver, VPN relay)  <br><br>
 <div class="cmd-output hidden">
 <span class="term-comment"># vmac-cv-website</span><br>
 Personal portfolio website & IaC showcase (you're currently on it)<br><br>
-* <strong> Stack:</strong>  Hugo | Terraform | AWS (S3/CF) | GitHub Actions | Docker <br>
+* <strong> Stack:</strong>  Hugo | Terraform | AWS (S3/CF) | GitHub Actions<br>
 * <strong> Core:</strong>  Automated CI/CD pipeline, IaC-managed infra, global CDN delivery.<br>
 <span class="term-keyword">Demonstrates:</span> Infrastructure as Code, modern deployment workflow
 <br><br>
