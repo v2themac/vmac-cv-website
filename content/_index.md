@@ -85,7 +85,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="cmd-output hidden">
 * <strong>Core:</strong> Linux (Debian/Alpine), Bash, Network, Troubleshooting<br>
 * <strong>Cloud & IaC:</strong> AWS (EC2, VPC, S3), Terraform, Docker<br>
-* <strong>Tools:</strong> Git, Hugo, CI/CD<br><br>
+* <strong>Tools:</strong> Git, Hugo, CI/CD, MySQL, Prometheus + Grafana<br><br>
 </div>
 </div>
 
