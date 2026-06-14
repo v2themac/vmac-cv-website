@@ -106,7 +106,7 @@ pagination.pagerSize = 5
       #  [[languages.en.menu.main]]
       #    identifier = "CV"
       #    name = "Curriculum Vitae"
-      #    url = "https://docs.google.com/document/d/1FHrJW-_l6w0Y7gNN1X0V8yYIECw7MQ2z3dP_OTiNmj4/export?format=pdf"
+      #    url = "https://docs.google.com/document/d/1wC6d_ESNS7JUFbSLsxg5G-N3MbCi3jyXoiOMddGbjbo/export?format=pdf"
       #    [languages.en.menu.main.params]
       #      NewTab = true
       #  [[languages.en.menu.main]]
