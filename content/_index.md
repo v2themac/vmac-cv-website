@@ -49,8 +49,8 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <div class="boot-line hidden">
 <span class="term-comment"># Boot sequence initiated...</span><br>
 > User: <span class="term-keyword">Vitalii Maksymenko</span><br>
-> Role: <span class="term-keyword">DevOps / Cloud Engineer</span><br>
-> Status: <span class="term-success">Actively seeking DevOps roles</span>
+> Role: <span class="term-keyword">IT Ops Engineer</span><br>
+> Status: <span class="term-success">Actively seeking IT Ops roles</span>
 </div>
 <div class="boot-line hidden"><br></div>
 <div class="boot-line hidden">
@@ -72,7 +72,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <span class="term-comment"># Core specs & qualifications</span><br>
 <strong>Experience:</strong> <span class="term-keyword">4+ years</span> (SysAdmin & Support background)<br>
 <strong>Certifications:</strong> <a href="https://cs.lpi.org/caf/Xamman/certification/verify/LPI000679592/x9bsmhqh5t" target="_blank" class="term-link">LPI Linux Essentials</a><br>
-<strong>Location:</strong> Romania (remote & relocation ready)<br><br>
+<strong>Location:</strong> Romania<br><br>
 </div>
 </div>
 
@@ -144,7 +144,7 @@ Personal portfolio website & IaC showcase (you're currently on it)<br><br>
 <div class="cmd-output hidden">
 Fetching resume.gdoc<br>
 Generating PDF... <span class="ascii-progress">[<span class="ascii-progress-fill" id="resume-progress"></span>]</span> <span class="hidden" id="pdf-done">[DONE]</span><br>
-> <a href="https://docs.google.com/document/d/1FHrJW-_l6w0Y7gNN1X0V8yYIECw7MQ2z3dP_OTiNmj4/export?format=pdf" target="_blank" class="term-success hidden" id="pdf-link" style="border-bottom: 2px solid #03a062;">[Download My_CV.pdf]</a>
+> <a href="https://docs.google.com/document/d/1ZchZqQbJprWoQwVg2aS4Y9hJux-A4dzrL40CnKsAxyU/export?format=pdf" target="_blank" class="term-success hidden" id="pdf-link" style="border-bottom: 2px solid #03a062;">[Download My_CV.pdf]</a>
 <br><br>
 <span class="term-comment hidden" id="cta-message">[✓] Profile loaded. Exit code: 0<br>
 [→] Recommended action: run initiate_collaboration.sh<br>
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const initTyped = document.getElementById('init-typed');
   const initCursor = document.getElementById('init-cursor');
   const bootSequence = document.getElementById('boot-sequence');
-  const initCommand = "./init_profile.sh --role=devops";
+  const initCommand = "./init_profile.sh --role=itops";
 
   function scrollToEl(el, force = false) {
     const rect = el.getBoundingClientRect();
