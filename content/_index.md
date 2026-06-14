@@ -83,9 +83,16 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 <span class="typed-text term-cmd" data-cmd="check_skills --verbose"></span>
 </div>
 <div class="cmd-output hidden">
-* <strong>Core:</strong> Linux (Debian/Alpine), Bash, Network, Troubleshooting<br>
-* <strong>Cloud & IaC:</strong> AWS (EC2, VPC, S3), Terraform, Docker<br>
-* <strong>Tools:</strong> Git, Hugo, CI/CD, MySQL, Prometheus + Grafana<br><br>
+* <strong>Operating Systems:</strong> Linux (Ubuntu/Alpine), Windows, macOS<br>
+* <strong>DevOps & Automation:</strong> Ansible, Git, GitHub Actions, GitLab, Bash scripting, n8n<br>
+* <strong>Containerization & Virtualization:</strong> Docker, Proxmox, VMware vSphere, Hyper-V<br>
+* <strong>Cloud & Identity Providers (IdP):</strong> AWS (S3, CloudFront, EC2, IAM), GCP, Azure IdP, Google IdP<br>
+* <strong>Domain & Authentication:</strong> Active Directory, Azure AD, SSO/SAML<br>
+* <strong>Networking & Security:</strong> TCP/IP, DNS, Mesh VPN (Tailscale, NetBird), Mikrotik<br>
+* <strong>Monitoring & Observability:</strong> Prometheus + Grafana, Log analysis (syslog, journald)<br>
+* <strong>Endpoint Device Management:</strong> Intune, Jamf<br>
+* <strong>ITSM & Collaboration:</strong> Jira, Confluence, Redmine, Google Workspace, Slack, Zoom<br>
+* <strong>Administrative & Legacy Systems:</strong> BambooHR<br>
 </div>
 </div>
 
