@@ -70,7 +70,7 @@ hr.term-divider { border: 0; border-top: 1px dashed #444; margin: 25px 0; opacit
 </div>
 <div class="cmd-output hidden">
 <span class="term-comment"># Core specs & qualifications</span><br>
-<strong>Experience:</strong> <span class="term-keyword">4+ years</span> (SysAdmin & Support background)<br>
+<strong>Experience:</strong> <span class="term-keyword"5+ years</span> (SysAdmin & Support background)<br>
 <strong>Certifications:</strong> <a href="https://cs.lpi.org/caf/Xamman/certification/verify/LPI000679592/x9bsmhqh5t" target="_blank" class="term-link">LPI Linux Essentials</a><br>
 <strong>Location:</strong> Romania<br><br>
 </div>
